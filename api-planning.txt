@@ -1,0 +1,107 @@
+Stnadar API
+
+{root.api}/{version}/{grouping}/{endpoint}
+SAMPLE:
+http://mern-api.kabayancoding.com/v1/auth/login
+
+
+==========================================================================================================
+
+Standar Status Response
+200 - OK                      --> Call API Success
+201 - CREATED                 --> POST Success
+400 - BAD REQUEST             --> Error on Clinet Side (Bisa input salah dll).
+401 - UNAUTHORIZED            --> User not authorized to the request.
+403 - FORBIDDEN               --> User not allowed to acces.
+404 - NOT FOUND               --> Request Endpoint Not Found.
+500 - INTERNAL SERVER ERROR   --> Error on Server Side.
+502 - BAD REQUEST             --> Ibvalid Response From Another Request
+
+
+==========================================================================================================
+
+GROUP : Authentication
+[1] - Register
+[POST] : {root.api}/{version}/auth/register
+
+req:
+{
+  "name": "Testing",
+  "email": "testing@email.com",
+  "password": "123123"
+}
+
+res:
+{
+  "message": "Register Success"
+  "data": {
+    "id": 1,
+    "name": "Testing",
+    "email": "test@gmail.com",
+    "password": "123123"
+  }
+}
+
+err-response:
+400 -> input yang anda masukan tidak valid
+
+[2] - Login
+[POST] : {root.api}/{version}/auth/login
+
+req:
+{
+  "email": "testing@email.com",
+  "password": "123123"
+}
+
+res:
+{
+  "message": "Login Success"
+  "data": {
+    "id": 1,
+    "name": "Testing",
+    "email": "test@gmail.com",
+  }
+}
+
+err-response:
+400 -> input yang anda masukan tidak valid
+
+
+=========================================================================================================
+
+GROUP: BLOG
+
+[1] - Create Blog Post
+[POST] : {root.api}/{version}/blog/post
+
+req:
+{
+  "title": "Title Blog",
+  "image": "imagefile.png",
+  "body": "Lorem Ipsum is simply dummy text of the printing"
+}
+
+res:
+{
+  "message": "Create Blog Post Success",
+  "data": {
+    "post_id": 1,
+    "title": "Title Blog",
+    "image": "imagefile.png",
+    "body": "Lorem Ipsum is simply dummy text of the printing",
+    "created_at": "12/06/2020",
+    "author" : {
+      "uid": 1,
+      "name": "Testing"
+    }
+  }
+}
+
+err-response:
+201 -> Blog Post Behasil Dibuat
+400 -> Input yang anda masukan tidak valid
+
+[2] - Get Blog Post
+[3] - Update Blog Post
+[4] - Delete Blog Post
